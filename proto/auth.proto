@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+    rpc Registration (CreateUserDto) returns (User) {}
+    rpc LoginUser (LoginUserDto) returns (User) {}
+    rpc Me (MeDto) returns (User) {}
+    rpc Verify (VerifyDto) returns (VerifyResponse) {}
+    rpc ForgotPass (ForgotPasswordDto) returns (User) {}
+    rpc UpdatePass (UpdatePassDto) returns (UpdatePassRes) {}
+}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    string middlename = 3;
+    string surname = 4;
+    string createAt = 5;
+    string updateAt = 6; 
+    string email = 7;
+    string avatar = 8;
+    bool isActivated = 9;
+    bool blocked = 10;
+    string blockedDescription = 11;
+}
+
+message CreateUserDto {
+  string email = 1;
+  string name = 2;
+  string middlename = 3;
+  string surname = 4;
+  string password = 5;
+}
+
+message LoginUserDto {
+    string email = 1;
+    string password = 2;
+}
+
+message VerifyDto {
+    int32 userId = 1;
+    int32 code = 2;
+}
+
+message ForgotPasswordDto {
+    string email = 1;
+}
+
+message UpdatePassDto {
+    int32 id = 1;
+    string password = 2;
+    int32 code = 3;
+}
+
+message VerifyResponse {
+    string message = 1;
+    string token = 2;
+}
+
+message MeDto {
+    int32 userId = 1;
+}
+
+message UpdatePassRes {
+    string message = 1;
+}
+

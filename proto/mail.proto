@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package mail;
+
+service MailService {
+    rpc SendOTPCode (CreateOneAuthCode) returns (OkSendMailRes) {}
+    rpc SendLoginMail (CreateLoginMail) returns (OkSendMailRes) {}
+    rpc SendCreateClassMail (MailSuccessfulCreateClassDto) returns (OkSendMailRes) {}
+}
+
+message CreateOneAuthCode {
+   string to = 1;
+   string code = 2;
+}
+
+message CreateLoginMail {
+   string to = 1;
+}
+
+message MailSuccessfulCreateClassDto {
+   string to = 1;
+   string class = 2;
+   string school = 3;
+   string createrUsername = 4;
+}
+
+message OkSendMailRes {
+   string message = 1; 
+}
