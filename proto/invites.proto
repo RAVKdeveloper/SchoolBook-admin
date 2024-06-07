@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package invites;
+
+import "proto/admin.proto";
+
+service InvitesService {
+    rpc AcceptModeratorInvite (AcceptInviteModeratorDto) returns (ReturnOkAcceptInvite) {}
+     
+} 
+
+message AcceptInviteModeratorDto {
+    bool isAccept = 1;
+}
+
+message GetAllInvitesQueryDto {
+    optional string role = 1;
+    int32 page = 2;
+    optional int32 limit = 3;
+}
+
+message InvitingAllAccountDto {
+    repeated .admins.AccountDto accounts = 1;
+    int32 count = 2;
+}
+
+message ReturnOkAcceptInvite {
+    string message = 1; 
+}

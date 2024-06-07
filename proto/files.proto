@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package files;
+
+
+service FilesService {
+    rpc UploadUserAvatar (UploadUserAvatarDto) returns (OkUploadResponse) {}
+    rpc UploadSchoolAvatar (UploadSchoolAvatarDto) returns (OkUploadResponse) {}
+}
+
+message UploadUserAvatarDto {
+    uint32 userId = 1;
+    oneof file {
+        FileMetadata metadata = 2;
+        SaveFileRequest data = 3;
+    }
+}
+
+message UploadSchoolAvatarDto {
+    uint32 schoolId = 1;
+    oneof file {
+        FileMetadata metadata = 2;
+        SaveFileRequest data = 3; 
+    } 
+}
+
+message OkUploadResponse {
+    string message = 1; 
+}
+
+
+message SaveFileRequest {
+    bytes file_data = 1;
+}
+
+enum FileType {
+    IMAGE = 0;
+    VIDEO = 1;
+    AUDIO = 2;
+    DOCUMENT = 3;
+}
+
+message FileMetadata {
+    FileType type = 1;
+    int64 size = 2; // Размер файла в байтах
+    string filename = 3; // Имя файла
+    string mime_type = 4; // MIME-тип файла
+}

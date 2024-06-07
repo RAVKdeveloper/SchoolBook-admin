@@ -1,2 +1,5 @@
-export { AuthCodeEntity } from './auth-code.entity';
-export { UserEntity } from './user.entity';
+export { AuthCodeEntity } from './auth-code.entity'
+export { ModeratorEntity } from './moderator.entity'
+export { OwnerEntity } from './owner.entity'
+export { School } from './school.entity'
+export { UserEntity } from './user.entity'
