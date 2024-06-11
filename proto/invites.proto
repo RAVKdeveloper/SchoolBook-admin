@@ -2,21 +2,27 @@ syntax = "proto3";
 
 package invites;
 
-import "proto/admin.proto";
+import public "proto/admin.proto";
 
 service InvitesService {
     rpc AcceptModeratorInvite (AcceptInviteModeratorDto) returns (ReturnOkAcceptInvite) {}
-     
+    rpc GetAllInvites (GetAllInvitesQueryDto) returns (InvitingAllAccountDto) {} 
+    rpc CreateTeacherInvite (CreateTeacherInviteDto) returns (ReturnOkAcceptInvite) {}
+    rpc CreateStudentInvite (CreateStudentInviteDto) returns (ReturnOkAcceptInvite) {}
+    rpc AccessStudentInvite (GetAccessStudentInviteDto) returns (ReturnOkAcceptInvite) {}
+    rpc AccessTeacherInvite (GetAccessTeacherInviteDto) returns (ReturnOkAcceptInvite) {}
 } 
 
 message AcceptInviteModeratorDto {
     bool isAccept = 1;
+    uint32 moderatorId = 2;
 }
 
 message GetAllInvitesQueryDto {
     optional string role = 1;
     int32 page = 2;
     optional int32 limit = 3;
+    int32 userId = 4;
 }
 
 message InvitingAllAccountDto {
@@ -26,4 +32,29 @@ message InvitingAllAccountDto {
 
 message ReturnOkAcceptInvite {
     string message = 1; 
+}
+
+message CreateTeacherInviteDto {
+    int32 userId = 1;
+    int32 schoolId = 2;
+    optional int32 lessonId = 3;
+    optional int32 chiefClassId = 4;
+    optional int32 maxCount = 5;
+}
+
+message CreateStudentInviteDto {
+    int32 userId = 1;
+    int32 schoolId = 2;
+    int32 classId = 3;
+    optional int32 maxCount = 4;
+}
+
+message GetAccessTeacherInviteDto {
+    int32 userId = 1;
+    string key = 2;
+} 
+
+message GetAccessStudentInviteDto {
+    int32 userId = 1;
+    string key = 2;
 }

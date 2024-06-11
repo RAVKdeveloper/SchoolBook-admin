@@ -37,6 +37,7 @@ message AccountDto {
     string createAt = 4;
     string updateAt = 5;
     string role = 6;
+    optional bool isAccepted = 7;
 }
 
 message ResponseAllAccounts {

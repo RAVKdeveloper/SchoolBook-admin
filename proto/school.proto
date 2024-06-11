@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package school;
+
+import "proto/entities.proto";
+
+service SchoolService {
+    rpc CreateSchool (CreateSchoolDto) returns (ReturnSchoolCreateOk) {}
+    rpc GetSchoolById (GetOneSchoolDto) returns (ReturnGetOneSchool) {}
+    rpc UpdateSchoolMetedata (UpdateSchoolDto) returns (ReturnGetOneSchool) {} 
+}
+
+message CreateSchoolDto {
+    string name = 1;
+    string location = 2;
+    string licenseNumber = 3;
+    string pointsSystem = 4;
+    string region = 5;
+    int32 userId = 6;
+    string ip = 7;
+}
+
+message ReturnSchoolCreateOk {
+   string message = 1;
+   int32 schoolId = 2; 
+}
+
+message ReturnGetOneSchool {
+    string message = 1;
+    .entities.SchoolEntityDto school = 2;  
+}
+
+message GetOneSchoolDto {
+    int32 schoolId = 1;
+    optional int32 ownerId = 2;
+    optional int32 moderatorId = 3;
+    optional int32 teacherId = 4; 
+}
+
+message UpdateSchoolDto {
+    optional string name = 1;
+    optional string description = 2;
+    optional string licenseNumber = 3;
+    optional string location = 4;
+    int32 ownerId = 5;
+}

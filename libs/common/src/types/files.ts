@@ -30,6 +30,15 @@ export interface UploadSchoolAvatarDto {
   data?: SaveFileRequest | undefined
 }
 
+export interface DeleteUserAvatarDto {
+  userId: number
+}
+
+export interface DeleteSchoolAvatarDto {
+  userId: number
+  schoolId: number
+}
+
 export interface OkUploadResponse {
   message: string
 }
@@ -54,6 +63,10 @@ export interface FilesServiceClient {
   uploadUserAvatar(request: UploadUserAvatarDto): Observable<OkUploadResponse>
 
   uploadSchoolAvatar(request: UploadSchoolAvatarDto): Observable<OkUploadResponse>
+
+  deleteUserAvatar(request: DeleteUserAvatarDto): Observable<OkUploadResponse>
+
+  deleteSchoolAvatar(request: DeleteSchoolAvatarDto): Observable<OkUploadResponse>
 }
 
 export interface FilesServiceController {
@@ -64,11 +77,24 @@ export interface FilesServiceController {
   uploadSchoolAvatar(
     request: UploadSchoolAvatarDto,
   ): Promise<OkUploadResponse> | Observable<OkUploadResponse> | OkUploadResponse
+
+  deleteUserAvatar(
+    request: DeleteUserAvatarDto,
+  ): Promise<OkUploadResponse> | Observable<OkUploadResponse> | OkUploadResponse
+
+  deleteSchoolAvatar(
+    request: DeleteSchoolAvatarDto,
+  ): Promise<OkUploadResponse> | Observable<OkUploadResponse> | OkUploadResponse
 }
 
 export function FilesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ['uploadUserAvatar', 'uploadSchoolAvatar']
+    const grpcMethods: string[] = [
+      'uploadUserAvatar',
+      'uploadSchoolAvatar',
+      'deleteUserAvatar',
+      'deleteSchoolAvatar',
+    ]
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method)
       GrpcMethod('FilesService', method)(constructor.prototype[method], method, descriptor)

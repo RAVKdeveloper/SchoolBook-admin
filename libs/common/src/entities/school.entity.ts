@@ -1,8 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm'
 
 import { BasicEntity } from '../basic'
+import { ClassEntity } from './class.entity'
+import { LessonEntity } from './lesson.entity'
+import { ModeratorEntity } from './moderator.entity'
 import { OwnerEntity } from './owner.entity'
+import { StudentEntity } from './student.entity'
+import { TeacherEntity } from './teacher.entity'
 
 @Entity('school')
 export class School extends BasicEntity {
@@ -42,23 +47,36 @@ export class School extends BasicEntity {
   @Column({ name: 'ip' })
   ip: string
 
-  //   @OneToMany(() => Student, student => student.school, { onDelete: 'CASCADE' })
-  //   @ApiProperty({ default: [], description: 'Students id', enum: () => Student })
-  //   students: Student[]
+  @OneToMany(() => StudentEntity, student => student.school, { onDelete: 'CASCADE' })
+  @ApiProperty({ default: [], description: 'Students id', enum: () => StudentEntity })
+  students: StudentEntity[]
 
-  //   @OneToMany(() => Teacher, teacher => teacher.school, { onDelete: 'CASCADE' })
-  //   @ApiProperty({ default: [], description: 'Teachers id', enum: () => Teacher })
-  //   teachers: Teacher[]
+  @OneToMany(() => TeacherEntity, teacher => teacher.school, { onDelete: 'CASCADE' })
+  @ApiProperty({
+    default: [],
+    description: 'Teachers id',
+    enum: () => TeacherEntity,
+    isArray: true,
+  })
+  teachers: TeacherEntity[]
 
-  //   @OneToMany(() => Lesson, lesson => lesson.school)
-  //   @ApiProperty({ default: [], enum: () => Lesson })
-  //   @JoinColumn()
-  //   lessons: Lesson[]
+  @OneToMany(() => ModeratorEntity, moderator => moderator.school)
+  @ApiProperty({
+    description: 'Moderators',
+    enum: () => ModeratorEntity,
+    isArray: true,
+  })
+  moderators: ModeratorEntity[]
 
-  //   @OneToMany(() => Class, classe => classe.school)
-  //   @ApiProperty({ default: [], enum: () => Class })
-  //   @JoinColumn()
-  //   classes: Class[]
+  @OneToMany(() => LessonEntity, lesson => lesson.school)
+  @ApiProperty({ default: [], enum: () => LessonEntity, isArray: true })
+  @JoinColumn()
+  lessons: LessonEntity[]
+
+  @OneToMany(() => ClassEntity, classe => classe.school, { onDelete: 'CASCADE' })
+  @ApiProperty({ default: [], enum: () => ClassEntity })
+  @JoinColumn()
+  classes: ClassEntity[]
 
   @ApiProperty({ example: 'Moscow', description: 'Region from this school' })
   @Column()
@@ -71,4 +89,8 @@ export class School extends BasicEntity {
   @ApiProperty({ example: false, description: 'Is blocked school' })
   @Column({ default: false })
   blocked: boolean
+
+  @ApiProperty({ description: 'School description', example: 'My school' })
+  @Column({ nullable: true })
+  description: string
 }

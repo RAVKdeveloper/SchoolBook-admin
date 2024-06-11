@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package entities;
+
+
+message SchoolEntityDto {
+    string name = 1;
+    string avatarUrl = 2;
+    string location = 3;
+    string licenseNumber = 4;
+    string licenseImg = 5;
+    AccountEntityDto owner = 6;
+    string pointsSystem = 7;
+    string ip = 8;
+    string region = 9;
+    bool IsActivated = 10;
+    bool blocked = 11;
+    int32 id = 12;
+    string createAt = 13;
+    string updateAt = 14;
+    repeated StudentAccDto students = 15;
+    repeated TeacherEntityDto teachers = 16;
+    repeated LessonEntityDto lessons = 17;
+    repeated ClassEntityDto classes = 18;
+    repeated ModeratorAccDto moderators = 19;
+    string description = 20;
+}
+
+message AccountEntityDto {
+    int32 id = 8;
+    string createAt = 9;
+    string updateAt = 10;
+    UserEntityDto userId = 1;
+    SchoolEntityDto school = 2;
+    string role = 6;
+    optional bool isAccepted = 7;
+}
+
+message ModeratorAccDto {
+   int32 id = 1;
+   string createAt = 2;
+   string updateAt = 3;
+   UserEntityDto userId = 4;
+   SchoolEntityDto school = 5;
+   string role = 6;
+   bool isActivated = 7;
+}
+
+message UserEntityDto {
+    int32 id = 1;
+    string name = 2;
+    string middlename = 3;
+    string surname = 4;
+    string createAt = 5;
+    string updateAt = 6; 
+    string email = 7;
+    string avatar = 8;
+    bool isActivated = 9;
+    bool blocked = 10;
+    string blockedDescription = 11;
+}
+
+message StudentAccDto {
+    int32 id = 6;
+    string createAt = 7;
+    string updateAt = 8;
+    bool isAdmit = 1;
+    SchoolEntityDto school = 2;
+    string dateOfAccession = 3;
+    UserEntityDto userId = 4;
+    repeated ClassEntityDto class = 5;
+    repeated PointEntityDto points = 9;
+}
+
+message TeacherEntityDto {
+  int32 id = 8;
+  string createAt = 9;
+  string updateAt = 10;
+  bool isAdmit = 1;
+  UserEntityDto userId = 2;
+  SchoolEntityDto school = 3;
+  string OpeningTimes = 4;
+  string role = 5;
+  repeated ClassEntityDto class = 6;
+  repeated LessonEntityDto lessons = 7;
+}
+
+message ClassEntityDto {
+    int32 id = 7;
+    string createAt = 8;
+    string updateAt = 9;
+    string name = 1;
+    string parallel = 2;
+    SchoolEntityDto school = 3;
+    repeated TeacherEntityDto chiefs = 4;
+    repeated StudentAccDto students = 5;
+    repeated LessonEntityDto lessons = 6;
+    repeated PointEntityDto points = 10;
+}
+
+message LessonEntityDto {
+    int32 id = 6;
+    string createAt = 7;
+    string updateAt = 8;
+    string lessonName = 1;
+    string icon = 2;
+    SchoolEntityDto school = 3;
+    repeated TeacherEntityDto teacher = 4;
+    repeated ClassEntityDto classes = 5;
+}
+
+message PointEntityDto {
+    int32 id = 1;
+    string createAt = 2;
+    string updateAt = 3;
+    string point = 4;
+    string description = 5;
+    StudentAccDto student = 6;
+    LessonEntityDto lesson = 7;
+    SchoolEntityDto school = 8;
+    ClassEntityDto classe = 9;
+    string type = 10; 
+}

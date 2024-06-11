@@ -27,7 +27,25 @@ export class FilesService implements OnModuleInit {
     })
   }
 
-  findAll() {
-    return `This action returns all files`
+  async uploadSchoolAvatar(file: Express.Multer.File, schoolId: number) {
+    return this.filesService.uploadSchoolAvatar({
+      schoolId,
+      metadata: {
+        size: file.size,
+        // @ts-expect-error
+        type: file.type,
+        filename: file.filename,
+        mimeType: file.mimetype,
+      },
+      data: { fileData: file.buffer },
+    })
+  }
+
+  async deleteUserAvatar(userId: number) {
+    return this.filesService.deleteUserAvatar({ userId })
+  }
+
+  async deleteSchoolAvatar(schoolId: number, userId: number) {
+    return this.filesService.deleteSchoolAvatar({ schoolId, userId })
   }
 }

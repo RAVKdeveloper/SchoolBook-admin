@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package teachers;
+
+import "proto/entities.proto";
+
+
+service TeachersService {
+   rpc GetAllTeachers (QueryTeachersDto) returns (ReturnAllTeachersDto) {}
+   rpc GetTeacherById (GetTeacherByIdDto) returns (ReturnOneTeacherDto) {}
+}
+
+
+message QueryTeachersDto {
+    optional string search = 1;
+    string page = 2;
+    optional string limit = 3;
+    optional string sortData = 4;
+    string schoolId = 5;
+}
+
+message GetTeacherByIdDto {
+    int32 teacherId = 1;
+}
+
+message ReturnOneTeacherDto {
+    string message = 1;
+    .entities.TeacherEntityDto teacher = 2;
+}
+
+message ReturnAllTeachersDto {
+    int32 count = 1;
+    repeated entities.TeacherEntityDto data = 2;
+}

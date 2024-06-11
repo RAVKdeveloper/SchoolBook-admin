@@ -6,7 +6,30 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/apigateway/tsconfig.app.json"
+    "tsConfigPath": "apps/apigateway/tsconfig.app.json",
+    "assets": [
+      {
+        "include": "proto/admin.proto",
+        "outDir": "dist/apps/apigateway/proto",
+        "watchAssets": true
+      },
+      {
+        "include": "proto/invites.proto",
+        "outDir": "dist/apps/apigateway",
+        "watchAssets": true
+      },
+      {
+        "include": "proto/*.proto",
+        "outDir": "dist/apps/apigateway",
+        "watchAssets": true
+      },
+      {
+        "include": "proto/entities.proto",
+        "outDir": "dist/apps/apigateway/proto",
+        "watchAssets": true
+      }
+    ],
+    "watchAssets": true
   },
   "monorepo": true,
   "root": "apps/apigateway",
@@ -18,7 +41,18 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/apigateway/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": [
+          {
+            "include": "proto/admin.proto",
+            "outDir": "dist/apps/apigateway/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/invites.proto",
+            "outDir": "dist/apps/apigateway",
+            "watchAssets": true
+          }
+        ],
         "watchAssets": true
       }
     },
@@ -67,12 +101,22 @@
     "invites": {
       "type": "application",
       "root": "apps/invites",
-      "entryFile": "main",
-      "sourceRoot": "apps/invites/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/invites/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
-        "watchAssets": true
+        "assets": [
+          {
+            "include": "proto/admin.proto",
+            "outDir": "dist/apps/invites/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/invites.proto",
+            "outDir": "dist/apps/invites",
+            "watchAssets": true
+          }
+        ]
       }
     },
     "files": {
@@ -83,6 +127,50 @@
       "compilerOptions": {
         "tsConfigPath": "apps/files/tsconfig.app.json",
         "assets": ["proto/files.proto"],
+        "watchAssets": true
+      }
+    },
+    "school": {
+      "type": "application",
+      "root": "apps/school",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/school/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/school/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/school.proto",
+            "outDir": "dist/apps/school",
+            "watchAssets": true
+          }
+        ],
+        "watchAssets": true
+      }
+    },
+    "teachers": {
+      "type": "application",
+      "root": "apps/teachers",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/teachers/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/teachers/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/teachers.proto",
+            "outDir": "dist/apps/teachers",
+            "watchAssets": true
+          }
+        ],
         "watchAssets": true
       }
     }

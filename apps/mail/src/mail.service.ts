@@ -1,12 +1,8 @@
-import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { GrpcInternalException } from 'nestjs-grpc-exceptions';
+import { MailerService } from '@nestjs-modules/mailer'
+import { Injectable, OnModuleInit } from '@nestjs/common'
+import { GrpcInternalException } from 'nestjs-grpc-exceptions'
 
-import {
-  CreateLoginMail,
-  CreateOneAuthCode,
-  MailSuccessfulCreateClassDto,
-} from '@app/common';
+import { CreateLoginMail, CreateOneAuthCode, MailSuccessfulCreateClassDto } from '@app/common'
 
 @Injectable()
 export class MailService implements OnModuleInit {
@@ -22,11 +18,11 @@ export class MailService implements OnModuleInit {
         subject: 'Код Подтверждения',
         text: 'Потвердите вход в SchoolBook',
         html: `<h1>${dto.code}</h1>`,
-      });
+      })
 
-      return { message: 'Message send' };
-    } catch {
-      throw new GrpcInternalException('Произошла Ошибка при отправке письма');
+      return { message: 'Message send' }
+    } catch (e) {
+      throw new GrpcInternalException('Произошла Ошибка при отправке письма')
     }
   }
 
@@ -50,11 +46,11 @@ export class MailService implements OnModuleInit {
                  })}
                </div>
               `,
-      });
+      })
 
-      return { message: 'Message send' };
+      return { message: 'Message send' }
     } catch {
-      throw new GrpcInternalException('Произошла Ошибка при отправке письма');
+      throw new GrpcInternalException('Произошла Ошибка при отправке письма')
     }
   }
 
@@ -86,11 +82,11 @@ export class MailService implements OnModuleInit {
                      })}
                    </div>
                 `,
-      });
+      })
 
-      return { message: 'Message send' };
+      return { message: 'Message send' }
     } catch {
-      throw new GrpcInternalException('Прозошла неизвестная ошибка');
+      throw new GrpcInternalException('Прозошла неизвестная ошибка')
     }
   }
 }

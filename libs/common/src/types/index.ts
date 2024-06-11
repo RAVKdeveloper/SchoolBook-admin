@@ -1,4 +1,7 @@
 export * from './admin'
 export * from './auth'
 export * from './files'
+export * from './invites'
 export * from './mail'
+export * from './school'
+export * from './teachers'

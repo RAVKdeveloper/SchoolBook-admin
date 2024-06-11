@@ -1,9 +1,7 @@
-import { IsNotEmpty } from 'class-validator'
+import { IsArray, IsNotEmpty } from 'class-validator'
 
 export class UploadFileDto {
   @IsNotEmpty()
-  readonly body: Uint8Array
-
-  @IsNotEmpty()
-  readonly size: number
+  @IsArray()
+  readonly body: { img: Buffer; size: number }[]
 }

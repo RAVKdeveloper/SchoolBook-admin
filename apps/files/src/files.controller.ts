@@ -1,6 +1,8 @@
 import { Controller } from '@nestjs/common'
 
 import {
+  DeleteSchoolAvatarDto,
+  DeleteUserAvatarDto,
   FilesServiceController,
   FilesServiceControllerMethods,
   OkUploadResponse,
@@ -16,6 +18,18 @@ import { FilesService } from './files.service'
 export class FilesController implements FilesServiceController {
   constructor(private readonly filesService: FilesService) {}
 
+  deleteUserAvatar(
+    dto: DeleteUserAvatarDto,
+  ): OkUploadResponse | Observable<OkUploadResponse> | Promise<OkUploadResponse> {
+    return this.filesService.deleteUserAvatar(dto)
+  }
+
+  deleteSchoolAvatar(
+    dto: DeleteSchoolAvatarDto,
+  ): OkUploadResponse | Observable<OkUploadResponse> | Promise<OkUploadResponse> {
+    return this.filesService.deleteSchoolAvatar(dto)
+  }
+
   uploadUserAvatar(
     dto: UploadUserAvatarDto,
   ): OkUploadResponse | Observable<OkUploadResponse> | Promise<OkUploadResponse> {
@@ -23,8 +37,8 @@ export class FilesController implements FilesServiceController {
   }
 
   uploadSchoolAvatar(
-    request: UploadSchoolAvatarDto,
+    dto: UploadSchoolAvatarDto,
   ): OkUploadResponse | Observable<OkUploadResponse> | Promise<OkUploadResponse> {
-    throw new Error('Method not implemented.')
+    return this.filesService.uploadSchoolAvatar(dto)
   }
 }

@@ -1,0 +1,6 @@
+export enum PointType {
+  HOMEWORK = 'HOMEWORK',
+  CLASSWORK = 'CLASSWORK',
+  ADDITIONAL = 'ADDITIONAL',
+  CONTROL = 'CONTROL',
+}

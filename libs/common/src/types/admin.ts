@@ -8,7 +8,7 @@
 import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices'
 import { Observable } from 'rxjs'
 
-export const protobufPackageSchool = 'admins'
+export const protobufPackageAdmins = 'admins'
 
 export interface CreateRoleDto {
   userId: number
@@ -35,6 +35,7 @@ export interface AccountDto {
   school: SchoolDto | undefined
   createAt: Date
   updateAt: Date
+  isAccepted?: boolean
 }
 
 export interface ResponseAllAccounts {

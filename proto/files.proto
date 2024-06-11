@@ -6,6 +6,8 @@ package files;
 service FilesService {
     rpc UploadUserAvatar (UploadUserAvatarDto) returns (OkUploadResponse) {}
     rpc UploadSchoolAvatar (UploadSchoolAvatarDto) returns (OkUploadResponse) {}
+    rpc DeleteUserAvatar (DeleteUserAvatarDto) returns (OkUploadResponse) {}
+    rpc DeleteSchoolAvatar (DeleteSchoolAvatarDto) returns (OkUploadResponse) {}
 }
 
 message UploadUserAvatarDto {
@@ -22,6 +24,15 @@ message UploadSchoolAvatarDto {
         FileMetadata metadata = 2;
         SaveFileRequest data = 3; 
     } 
+}
+
+message DeleteUserAvatarDto {
+    uint32 userId = 1;
+}
+
+message DeleteSchoolAvatarDto {
+    uint32 userId = 1;
+    uint32 schoolId = 2;
 }
 
 message OkUploadResponse {

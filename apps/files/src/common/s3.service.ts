@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import * as S3 from 'aws-sdk/clients/s3'
 import { v4 } from 'uuid'
 
+import { DeleteFileDto } from './dto/delete-file.dto'
 import { UploadFileDto } from './dto/upload-file.dto'
 
 @Injectable()
@@ -17,17 +18,41 @@ export class S3Api {
     apiVersion: 'latest',
   })
   private bucketName = process.env.BUCKET_NAME
+  private sizes: number[] = [32, 64]
 
   constructor() {}
 
   public async upload(dto: UploadFileDto) {
-    const params = {
-      Bucket: this.bucketName,
-      Key: `${v4()}?${dto.size}.webp`,
-      Body: dto.body,
-    }
+    const mainKey = v4()
 
-    const data = await this.s3.upload(params).promise()
+    const data = await Promise.all(
+      dto.body.map(async ({ img, size }) => {
+        const params = {
+          Bucket: this.bucketName,
+          Key: `${mainKey}?${size}.webp`,
+          Body: img,
+        }
+
+        const data = await this.s3.upload(params).promise()
+
+        return data
+      }),
+    )
+
+    return { data, key: mainKey }
+  }
+
+  public async delete(dto: DeleteFileDto) {
+    const data = await Promise.all(
+      this.sizes.map(async size => {
+        const params = {
+          Bucket: this.bucketName,
+          Key: `${dto.key}?${size}.webp`,
+        }
+
+        await this.s3.deleteObject(params).promise()
+      }),
+    )
 
     return data
   }
