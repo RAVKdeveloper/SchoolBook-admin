@@ -20,7 +20,7 @@ export class ClassEntity extends BasicEntity {
   @Column()
   parallel: string
 
-  @ManyToOne(() => School, school => school.classes)
+  @ManyToOne(() => School, school => school.classes, { onDelete: 'CASCADE' })
   @ApiProperty({ default: School, description: 'School', enum: () => School })
   @JoinColumn({ name: 'school' })
   school: School

@@ -173,6 +173,28 @@
         ],
         "watchAssets": true
       }
+    },
+    "school-statistic": {
+      "type": "application",
+      "root": "apps/school-statistic",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/school-statistic/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/school-statistic/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/school-statistic.proto",
+            "outDir": "dist/apps/school-statistic",
+            "watchAssets": true
+          }
+        ],
+        "watchAssets": true
+      }
     }
   }
 }

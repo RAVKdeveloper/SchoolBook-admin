@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package schoolStatistic;
+
+service SchoolStatisticService {
+    rpc GetAveragePoint (GetAveragePointDto) returns (ReturnGetAveragePoint) {}
+}
+
+message GetAveragePointDto {
+    string period = 1;
+    int32 schoolId = 2;
+    int32 system = 3;
+}
+
+message ReturnGetAveragePoint {
+    string period = 1;
+    string averagePoint = 2;
+    repeated int32 labels = 3;
+    repeated int32 data = 4; 
+}

@@ -73,7 +73,7 @@ export class School extends BasicEntity {
   @JoinColumn()
   lessons: LessonEntity[]
 
-  @OneToMany(() => ClassEntity, classe => classe.school, { onDelete: 'CASCADE' })
+  @OneToMany(() => ClassEntity, classe => classe.school)
   @ApiProperty({ default: [], enum: () => ClassEntity })
   @JoinColumn()
   classes: ClassEntity[]
