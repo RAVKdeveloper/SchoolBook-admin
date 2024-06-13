@@ -99,8 +99,14 @@ export class FilesService {
   }
 
   private async prepareSizesAvatars(fileBuffer: Uint8Array) {
-    const img32 = await sharp(fileBuffer).resize(32).webp().toBuffer()
-    const img64 = await sharp(fileBuffer).resize(64).webp().toBuffer()
+    const img32 = await sharp(fileBuffer)
+      .resize({ height: 32, width: 32, fit: 'contain' })
+      .webp()
+      .toBuffer()
+    const img64 = await sharp(fileBuffer)
+      .resize({ height: 64, width: 64, fit: 'contain' })
+      .webp()
+      .toBuffer()
 
     const objImg32 = {
       size: 32,

@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package schoolEvents;
+
+import "proto/entities.proto";
+
+service SchoolEventsService {
+    rpc CreateSchoolEvent (CreateSchoolEventDto) returns (CreateOkEventDto) {}
+    rpc GetAllSchoolEvents (GetAllSchoolEventsDto) returns (ReturnAllSchoolEventsDto) {}
+    rpc GetSchoolEventById (GetSchoolEventByIdDto) returns (CreateOkEventDto) {}
+    rpc UpdateSchoolEvent (UpdateSchoolEventDto) returns (CreateOkEventDto) {}
+    rpc DeleteSchoolEvent (DeleteSchoolEventDto) returns (CreateOkEventDto) {}
+}
+
+message CreateSchoolEventDto {
+    string title = 1;
+    string description = 2;
+    repeated string tags = 3;
+    int32 schoolId = 4;
+    repeated ActiveTeachersArrayDto activeTeachers = 5;
+    repeated ActiveStudentsArrayDto activeStudents = 6;
+    repeated ActiveClassesArrayDto activeClasses = 7;
+    int32 creatorId = 8;
+    bool isPrivate = 9;
+    string plannedDate = 10;
+}
+
+message ActiveTeachersArrayDto {
+    optional int32 teacherId = 1;
+}
+
+message ActiveStudentsArrayDto {
+    optional int32 studentId = 1;
+}
+
+message ActiveClassesArrayDto {
+    optional int32 classId = 1;
+}
+
+message CreateOkEventDto {
+    string message = 1;
+    .entities.SchoolEventEntityDto event = 2; 
+}
+
+message GetAllSchoolEventsDto {
+    optional string startDate = 1;
+    optional string endDate = 2;
+    repeated SchoolEventTagsDto tags = 3;
+    repeated ActiveClassesArrayDto classes = 4;
+    optional bool isPopular = 5;
+    optional int32 onlyMy = 6;
+    int32 page = 7;
+    optional int32 limit = 8;
+    int32 schoolId = 9;
+}
+
+message SchoolEventTagsDto {
+    optional string tag = 1; 
+}
+
+message ReturnAllSchoolEventsDto {
+    int32 count = 1;
+    repeated .entities.SchoolEventEntityDto data = 2;
+}
+
+message GetSchoolEventByIdDto {
+    int32 schoolEventId = 1;
+}
+
+message UpdateSchoolEventDto {
+    optional string title = 1;
+    optional string description = 2;
+    optional string image = 3;
+    repeated string tags = 4;
+    repeated ActiveTeachersArrayDto activeTeachers = 5;
+    repeated ActiveStudentsArrayDto activeStudents = 6;
+    repeated ActiveClassesArrayDto activeClasses = 7;
+    optional bool isPrivate = 8;
+    int32 creatorId = 9;
+    int32 eventId = 10;
+}
+
+message DeleteSchoolEventDto {
+    int32 id = 1;
+    int32 creatorId = 2;
+}

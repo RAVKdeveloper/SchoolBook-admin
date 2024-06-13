@@ -195,6 +195,28 @@
         ],
         "watchAssets": true
       }
+    },
+    "school-events": {
+      "type": "application",
+      "root": "apps/school-events",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/school-events/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/school-events/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/school-events.proto",
+            "outDir": "dist/apps/school-events",
+            "watchAssets": true
+          }
+        ],
+        "watchAssets": true
+      }
     }
   }
 }

@@ -17,7 +17,7 @@ export class SchoolStatisticService implements OnModuleInit {
     )
   }
 
-  public getAveragePoint(dto: QueryAveragePointDto) {
+  public async getAveragePoint(dto: QueryAveragePointDto) {
     return this.schoolStatisticService.getAveragePoint(dto)
   }
 }

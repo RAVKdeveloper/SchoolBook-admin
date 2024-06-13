@@ -127,4 +127,22 @@ export interface PointEntityDto {
   type: string
 }
 
+export interface SchoolEventEntityDto {
+  id: number
+  createAt: Date
+  updateAt: Date
+  title: string
+  description: string
+  tags: string[]
+  creator: UserEntityDto | undefined
+  school: SchoolEntityDto | undefined
+  activeTeachers: TeacherEntityDto[]
+  activeStudents: StudentAccDto[]
+  activeClasses: ClassEntityDto[]
+  plannedDate: string
+  views: number
+  image: string
+  isPrivate: boolean
+}
+
 export const ENTITIES_PACKAGE_NAME = 'entities'

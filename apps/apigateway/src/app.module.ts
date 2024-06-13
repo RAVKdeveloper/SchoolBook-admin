@@ -8,6 +8,7 @@ import { AdminsModule } from './admins/admins.module'
 import { AuthModule } from './auth/auth.module'
 import { FilesModule } from './files/files.module'
 import { InvitesModule } from './invites/invites.module'
+import { SchoolEventsModule } from './school-events/school-events.module'
 import { SchoolStatisticModule } from './school-statistic/school-statistic.module'
 import { SchoolModule } from './school/school.module'
 import { TeachersModule } from './teachers/teachers.module'
@@ -24,6 +25,7 @@ import { TeachersModule } from './teachers/teachers.module'
     SchoolModule,
     TeachersModule,
     SchoolStatisticModule,
+    SchoolEventsModule,
   ],
   providers: [
     {
