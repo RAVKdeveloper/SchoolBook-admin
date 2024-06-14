@@ -1,0 +1,70 @@
+version: '3.1'
+
+# $API_GATEWAY_PORT:$API_GATEWAY_PORT
+
+services:
+  apigateway:
+    build:
+      context: .
+      args:
+        - APP=apigateway
+    env_file:
+      - .env
+    ports:
+      - '5002:5002'
+  auth:
+    build:
+      context: .
+      args:
+        - APP=auth
+    env_file:
+      - .env
+    ports:
+      # - '$AUTH_URL:$AUTH_URL'
+      - '3001:3001'
+  admins:
+    build:
+      context: .
+      args:
+        - APP=admins
+    env_file:
+      - .env
+    ports:
+      # - '$ADMINS_URL:$ADMINS_URL'
+      - '3002:3002'
+  mail:
+    build:
+      context: .
+      args:
+        - APP=mail
+    env_file:
+      - .env
+    ports:
+      # - '$MAIL_URL:$MAIL_URL'
+      - '3003:3003'
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis:/data
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_URL: ${REDIS_URL}
+  database:
+    image: postgres:14.5
+    restart: always
+    environment:
+      POSTGRES_USER: ${DBLOGIN}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${NAMEDB}
+    ports:
+      - '5433:5433'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
+  redis:
+    driver: local

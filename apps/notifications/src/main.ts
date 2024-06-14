@@ -5,15 +5,15 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices'
 
 import { Packages } from '@app/common'
 
-import { TeachersModule } from './teachers.module'
+import { NotificationsModule } from './notifications.module'
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(TeachersModule, {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(NotificationsModule, {
     transport: Transport.GRPC,
     options: {
-      package: Packages.TEACHERS,
-      protoPath: join(__dirname, '../teachers.proto'),
-      url: process.env.TEACHERS_URL,
+      package: Packages.NOTIFICATIONS,
+      protoPath: join(__dirname, '../notifications.proto'),
+      url: process.env.NOTIFICATIONS_URL,
     },
   })
 

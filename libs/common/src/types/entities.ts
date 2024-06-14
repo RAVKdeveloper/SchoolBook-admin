@@ -145,4 +145,15 @@ export interface SchoolEventEntityDto {
   isPrivate: boolean
 }
 
+export interface PointNotificationEntityDto {
+  id: number
+  createAt: string
+  updateAt: string
+  to: UserEntityDto | undefined
+  title: string
+  description: string
+  point: PointEntityDto | undefined
+  creator: UserEntityDto | undefined
+}
+
 export const ENTITIES_PACKAGE_NAME = 'entities'

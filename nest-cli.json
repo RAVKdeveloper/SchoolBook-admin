@@ -63,7 +63,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": [
+          "proto/*.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -83,7 +85,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/mail/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": [
+          "proto/*.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -94,7 +98,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/admins/tsconfig.app.json",
-        "assets": ["proto/admin.proto"],
+        "assets": [
+          "proto/admin.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -126,7 +132,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/files/tsconfig.app.json",
-        "assets": ["proto/files.proto"],
+        "assets": [
+          "proto/files.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -216,6 +224,37 @@
           }
         ],
         "watchAssets": true
+      }
+    },
+    "notifications": {
+      "type": "application",
+      "root": "apps/notifications",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/notifications/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/notifications/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/notifications.proto",
+            "outDir": "dist/apps/notifications",
+            "watchAssets": true
+          }
+        ],
+        "watchAssets": true
+      }
+    },
+    "top-questions": {
+      "type": "application",
+      "root": "apps/top-questions",
+      "entryFile": "main",
+      "sourceRoot": "apps/top-questions/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/top-questions/tsconfig.app.json"
       }
     }
   }

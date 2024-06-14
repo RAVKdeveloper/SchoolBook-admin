@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package topQuestions;
+
+import "proto/entities.proto";
+
+service TopQuestionsService {
+    rpc CreateQuestion (CreateQuestionsDto) returns (ReturnOneQuestionDto) {}
+    rpc GetPopularQuestions (GetPopularQuestionsDto) returns (ReturnPopularQuestionsDto) {}
+    rpc GetQuestionById (GetQuestionByIdDto) returns (ReturnOneQuestionDto) {} 
+}
+
+message CreateQuestionsDto {
+    int32 creatorId = 1;
+    string title = 2;
+    string comment = 3;
+    string role = 4;
+    int32 schoolId = 5; 
+}
+
+message UpdateQuestionDto {
+    int32 updaterId = 1;
+    int32 questionId = 2;
+    optional string title = 3;
+    optional string comment = 4;
+    optional string role = 5;
+}
+
+message GetPopularQuestionsDto {
+    int32 schoolId = 1;
+    string role = 2;
+    string userRole = 3;
+}
+
+message ReturnPopularQuestionsDto {
+    int32 count = 1;
+    repeated .entities.QuestionEntityDto data = 2;
+}
+
+message GetQuestionByIdDto {
+    int32 id = 1;
+}
+
+message ReturnOneQuestionDto {
+    string message = 1;
+    .entities.QuestionEntityDto question = 2;
+}

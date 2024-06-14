@@ -139,3 +139,45 @@ message SchoolEventEntityDto {
     string image = 14;
     bool isPrivate = 15;
 }
+
+message PointNotificationEntityDto {
+    int32 id = 1;
+    string createAt = 2;
+    string updateAt = 3;
+    UserEntityDto to = 4;
+    string title = 5;
+    string description = 6;
+    PointEntityDto point = 7;
+    UserEntityDto creator = 8;
+}
+
+message QuestionEntityDto {
+    int32 id = 1;
+    string createAt = 2;
+    string updateAt = 3;
+    string title = 4;
+    string comment = 5;
+    UserEntityDto creator = 6;
+    string role = 7;
+    SchoolEntityDto school = 8;
+    repeated LikeEntityDto likes = 9;
+    repeated TopQuestionCommentEntityDto questionComments = 10;
+}
+
+message LikeEntityDto {
+    int32 id = 1;
+    string createAt = 2;
+    string updateAt = 3;
+    UserEntityDto user = 4;
+    QuestionEntityDto question = 5; 
+}
+
+message TopQuestionCommentEntityDto {
+    int32 id = 1;
+    string createAt = 2;
+    string updateAt = 3;
+    string comment = 4;
+    UserEntityDto creator = 5;
+    TopQuestionCommentEntityDto responseComment = 6;
+    QuestionEntityDto question = 7;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+// import "proto/entities.proto";
+
+package notifications;
+
+
+service NotificationsService {
+}
+
+

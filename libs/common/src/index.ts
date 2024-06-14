@@ -15,6 +15,11 @@ export { DatabaseModule } from './databases/database.module'
 
 export { CommonThrottlerModule } from './throttler/throttler.module'
 
+// Emitter
+
+export { EmitterModule } from './emmiter/emitter.module'
+export { EmitterService } from './emmiter/emitter.service'
+
 // Basic
 
 export * from './basic'
