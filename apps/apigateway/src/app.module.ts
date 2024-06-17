@@ -6,12 +6,14 @@ import { CacheDatabaseModule, CommonThrottlerModule, TokensModule } from '@app/c
 
 import { AdminsModule } from './admins/admins.module'
 import { AuthModule } from './auth/auth.module'
+import { ClassModule } from './class/class.module'
 import { FilesModule } from './files/files.module'
 import { InvitesModule } from './invites/invites.module'
 import { SchoolEventsModule } from './school-events/school-events.module'
 import { SchoolStatisticModule } from './school-statistic/school-statistic.module'
 import { SchoolModule } from './school/school.module'
 import { TeachersModule } from './teachers/teachers.module'
+import { TopQuestionsModule } from './top-questions/top-questions.module'
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { TeachersModule } from './teachers/teachers.module'
     TeachersModule,
     SchoolStatisticModule,
     SchoolEventsModule,
+    TopQuestionsModule,
+    ClassModule,
   ],
   providers: [
     {

@@ -17,8 +17,8 @@ import {
   UserEntity,
 } from '@app/common'
 
-import { TopQuestionsController } from './top-questions.controller'
-import { TopQuestionsService } from './top-questions.service'
+import { ClassController } from './class.controller'
+import { ClassService } from './class.service'
 
 @Module({
   imports: [
@@ -38,7 +38,7 @@ import { TopQuestionsService } from './top-questions.service'
       TopQuestionCommentEntity,
     ]),
   ],
-  controllers: [TopQuestionsController],
-  providers: [TopQuestionsService],
+  controllers: [ClassController],
+  providers: [ClassService],
 })
-export class TopQuestionsModule {}
+export class ClassModule {}

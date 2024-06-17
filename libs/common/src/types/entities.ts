@@ -156,4 +156,36 @@ export interface PointNotificationEntityDto {
   creator: UserEntityDto | undefined
 }
 
+export interface QuestionEntityDto {
+  id: number
+  createAt: string
+  updateAt: string
+  title: string
+  comment: string
+  creator: UserEntityDto | undefined
+  role: string
+  school: SchoolEntityDto | undefined
+  likes: LikeEntityDto[]
+  questionComments: TopQuestionCommentEntityDto[]
+  likesCount: number
+}
+
+export interface LikeEntityDto {
+  id: number
+  createAt: string
+  updateAt: string
+  user: UserEntityDto | undefined
+  question: QuestionEntityDto | undefined
+}
+
+export interface TopQuestionCommentEntityDto {
+  id: number
+  createAt: string
+  updateAt: string
+  comment: string
+  creator: UserEntityDto | undefined
+  responseComment: TopQuestionCommentEntityDto | undefined
+  question: QuestionEntityDto | undefined
+}
+
 export const ENTITIES_PACKAGE_NAME = 'entities'

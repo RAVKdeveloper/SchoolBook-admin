@@ -5,15 +5,15 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices'
 
 import { Packages } from '@app/common'
 
-import { TopQuestionsModule } from './top-questions.module'
+import { ClassModule } from './class.module'
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(TopQuestionsModule, {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(ClassModule, {
     transport: Transport.GRPC,
     options: {
-      package: Packages.TOP_QUESTIONS,
-      protoPath: join(__dirname, '../topQuestions.proto'),
-      url: process.env.TOP_QUESTIONS_URL,
+      package: Packages.CLASS,
+      protoPath: join(__dirname, '../class.proto'),
+      url: process.env.CLASS_URL,
     },
   })
 

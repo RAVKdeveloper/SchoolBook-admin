@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package class;
+
+import "proto/entities.proto";
+
+
+service ClassService {
+    rpc CreateClass (CreateClassDto) returns (ResponseGetClassById) {}
+    rpc GetAllClasses (GetAllClessesDto) returns (ResponseGetAllClassesDto) {}
+    rpc GetClassById (GetOneClassByIdDDto) returns (ResponseGetClassById) {}
+    rpc UpdateClass (UpdateClassDto) returns (ResponseGetClassById) {}
+    rpc DeleteClass (DeleteClassDto) returns (ResponseGetClassById) {}
+}
+
+
+message CreateClassDto {
+    int32 name = 1;
+    string parallel = 2;
+    int32 schoolId = 3;
+    repeated int32 chiefs = 4;
+}
+
+message GetAllClessesDto {
+    int32 schoolId = 1;
+    optional string searchValue = 2;
+    bool sortByRatingPoints = 3;
+    int32 page = 4;
+    optional int32 limit = 5;
+}
+
+message GetOneClassByIdDDto {
+    int32 id = 1;
+}
+
+message ResponseGetAllClassesDto {
+    int32 count = 1;
+    repeated .entities.ClassEntityDto data = 2;
+}
+
+message ResponseGetClassById {
+    string message = 1;
+    .entities.ClassEntityDto class = 2;
+}
+
+message UpdateClassDto {
+    optional int32 name = 1;
+    optional string parallel = 2;
+    repeated int32 students = 3;
+    repeated int32 lessons = 4;
+    repeated int32 chiefs = 5;
+    int32 id = 6;
+    int32 schoolId = 7;
+}
+
+message DeleteClassDto {
+    int32 id = 1;
+    int32 schoolId = 2;
+}

@@ -162,6 +162,7 @@ message QuestionEntityDto {
     SchoolEntityDto school = 8;
     repeated LikeEntityDto likes = 9;
     repeated TopQuestionCommentEntityDto questionComments = 10;
+    int32 likesCount = 11;
 }
 
 message LikeEntityDto {

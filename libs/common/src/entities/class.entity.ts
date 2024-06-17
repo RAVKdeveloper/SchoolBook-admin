@@ -21,7 +21,7 @@ export class ClassEntity extends BasicEntity {
   parallel: string
 
   @ManyToOne(() => School, school => school.classes, { onDelete: 'CASCADE' })
-  @ApiProperty({ default: School, description: 'School', enum: () => School })
+  @ApiProperty({ description: 'School', enum: () => School })
   @JoinColumn({ name: 'school' })
   school: School
 
@@ -51,7 +51,7 @@ export class ClassEntity extends BasicEntity {
   students: StudentEntity[]
 
   @OneToMany(() => PointEntity, point => point.classe)
-  @ApiProperty({ description: 'Points', enum: () => PointEntity })
+  @ApiProperty({ description: 'Points', enum: () => PointEntity, isArray: true })
   points: PointEntity[]
 
   //   @OneToMany(() => ClassSchedule, schedule => schedule.class)

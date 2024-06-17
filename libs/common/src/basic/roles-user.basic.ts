@@ -3,4 +3,5 @@ export enum RolesUser {
   MODERATOR = 'MODERATOR',
   STUDENT = 'STUDENT',
   TEACHER = 'TEACHER',
+  PARENT = 'PARENT',
 }

@@ -1,6 +1,7 @@
+import { join } from 'path'
+
 import { NestFactory } from '@nestjs/core'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
-import { join } from 'path'
 
 import { Packages } from '@app/common'
 

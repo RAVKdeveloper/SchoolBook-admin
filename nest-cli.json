@@ -63,9 +63,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json",
-        "assets": [
-          "proto/*.proto"
-        ],
+        "assets": ["proto/*.proto"],
         "watchAssets": true
       }
     },
@@ -85,9 +83,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/mail/tsconfig.app.json",
-        "assets": [
-          "proto/*.proto"
-        ],
+        "assets": ["proto/*.proto"],
         "watchAssets": true
       }
     },
@@ -98,9 +94,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/admins/tsconfig.app.json",
-        "assets": [
-          "proto/admin.proto"
-        ],
+        "assets": ["proto/admin.proto"],
         "watchAssets": true
       }
     },
@@ -132,9 +126,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/files/tsconfig.app.json",
-        "assets": [
-          "proto/files.proto"
-        ],
+        "assets": ["proto/files.proto"],
         "watchAssets": true
       }
     },
@@ -251,10 +243,45 @@
     "top-questions": {
       "type": "application",
       "root": "apps/top-questions",
-      "entryFile": "main",
-      "sourceRoot": "apps/top-questions/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/top-questions/tsconfig.app.json"
+        "tsConfigPath": "apps/top-questions/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/top-questions/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/topQuestions.proto",
+            "outDir": "dist/apps/top-questions",
+            "watchAssets": true
+          }
+        ],
+        "watchAssets": true
+      }
+    },
+    "class": {
+      "type": "application",
+      "root": "apps/class",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/class/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/class/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/class.proto",
+            "outDir": "dist/apps/class",
+            "watchAssets": true
+          }
+        ],
+        "watchAssets": true
       }
     }
   }

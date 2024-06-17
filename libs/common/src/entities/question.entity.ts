@@ -40,4 +40,8 @@ export class QuestionsEntity extends BasicEntity {
   @OneToMany(() => TopQuestionCommentEntity, comment => comment.question)
   @JoinColumn({ name: 'question_comments' })
   readonly questionComments: TopQuestionCommentEntity[]
+
+  @ApiProperty({ description: 'Likes count', example: 101 })
+  @Column({ name: 'likes_count' })
+  readonly likesCount: number
 }

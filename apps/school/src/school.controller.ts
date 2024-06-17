@@ -27,14 +27,12 @@ export class SchoolController implements SchoolServiceController {
   getSchoolById(
     dto: GetOneSchoolDto,
   ): ReturnGetOneSchool | Promise<ReturnGetOneSchool> | Observable<ReturnGetOneSchool> {
-    // @ts-expect-error
     return this.schoolService.getSchoolById(dto)
   }
 
   updateSchoolMetedata(
     dto: UpdateSchoolDto,
   ): ReturnGetOneSchool | Promise<ReturnGetOneSchool> | Observable<ReturnGetOneSchool> {
-    // @ts-expect-error
     return this.schoolService.updateSchoolMetadata(dto)
   }
 }
