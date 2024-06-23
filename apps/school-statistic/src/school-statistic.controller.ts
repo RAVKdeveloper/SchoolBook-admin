@@ -1,7 +1,9 @@
 import { Controller } from '@nestjs/common'
 
 import {
+  GetAllEmptyStudentsDto,
   GetAveragePointDto,
+  ReturnGetAllEmptyStudentsDto,
   ReturnGetAveragePoint,
   SchoolStatisticServiceController,
   SchoolStatisticServiceControllerMethods,
@@ -18,6 +20,14 @@ export class SchoolStatisticController implements SchoolStatisticServiceControll
   getAveragePoint(
     dto: GetAveragePointDto,
   ): ReturnGetAveragePoint | Promise<ReturnGetAveragePoint> | Observable<ReturnGetAveragePoint> {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     return this.schoolStatisticService.getAveragePointStatistic(dto)
+  }
+
+  getAllEmptyStudents(
+    dto: GetAllEmptyStudentsDto,
+  ): Promise<ReturnGetAllEmptyStudentsDto> | Observable<ReturnGetAllEmptyStudentsDto> {
+    throw new Error('')
   }
 }

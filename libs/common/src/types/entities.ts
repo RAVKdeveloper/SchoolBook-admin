@@ -111,7 +111,8 @@ export interface LessonEntityDto {
   icon: string
   school: SchoolEntityDto | undefined
   teacher: TeacherEntityDto[]
-  classes: ClassEntityDto[]
+  classes: ClassEntityDto
+  isRequired: boolean
 }
 
 export interface PointEntityDto {

@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module'
 import { ClassModule } from './class/class.module'
 import { FilesModule } from './files/files.module'
 import { InvitesModule } from './invites/invites.module'
+import { LessonsModule } from './lessons/lessons.module'
 import { SchoolEventsModule } from './school-events/school-events.module'
 import { SchoolStatisticModule } from './school-statistic/school-statistic.module'
 import { SchoolModule } from './school/school.module'
@@ -30,6 +31,7 @@ import { TopQuestionsModule } from './top-questions/top-questions.module'
     SchoolEventsModule,
     TopQuestionsModule,
     ClassModule,
+    LessonsModule,
   ],
   providers: [
     {

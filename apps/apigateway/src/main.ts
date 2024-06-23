@@ -10,7 +10,7 @@ async function bootstrap() {
 
   app.enableCors({ credentials: true, origin: process.env.FRONT_URL })
   app.setGlobalPrefix('api')
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe({ validateCustomDecorators: true }))
   app.use(cookieParser())
 
   const config = new DocumentBuilder()

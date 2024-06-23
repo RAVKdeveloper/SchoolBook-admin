@@ -18,8 +18,20 @@ export interface GetAveragePointDto {
 
 export interface ReturnGetAveragePoint {
   period: string
-  averagePoint: number
-  labels: string[]
+  averagePoint: string
+  labels: number[]
+  data: number[]
+}
+
+export interface GetAllEmptyStudentsDto {
+  period: string
+  schoolId: number
+  classId?: number | undefined
+}
+
+export interface ReturnGetAllEmptyStudentsDto {
+  period: string
+  labels: number[]
   data: number[]
 }
 
@@ -27,17 +39,26 @@ export const SCHOOL_STATISTIC_PACKAGE_NAME = 'schoolStatistic'
 
 export interface SchoolStatisticServiceClient {
   getAveragePoint(request: GetAveragePointDto): Observable<ReturnGetAveragePoint>
+
+  getAllEmptyStudents(request: GetAllEmptyStudentsDto): Observable<ReturnGetAllEmptyStudentsDto>
 }
 
 export interface SchoolStatisticServiceController {
   getAveragePoint(
     request: GetAveragePointDto,
   ): Promise<ReturnGetAveragePoint> | Observable<ReturnGetAveragePoint> | ReturnGetAveragePoint
+
+  getAllEmptyStudents(
+    request: GetAllEmptyStudentsDto,
+  ):
+    | Promise<ReturnGetAllEmptyStudentsDto>
+    | Observable<ReturnGetAllEmptyStudentsDto>
+    | ReturnGetAllEmptyStudentsDto
 }
 
 export function SchoolStatisticServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ['getAveragePoint']
+    const grpcMethods: string[] = ['getAveragePoint', 'getAllEmptyStudents']
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method)
       GrpcMethod('SchoolStatisticService', method)(

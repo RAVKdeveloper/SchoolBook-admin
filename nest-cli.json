@@ -283,6 +283,28 @@
         ],
         "watchAssets": true
       }
+    },
+    "lessons": {
+      "type": "application",
+      "root": "apps/lessons",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/lessons/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "proto/entities.proto",
+            "outDir": "dist/apps/lessons/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "proto/lesson.proto",
+            "outDir": "dist/apps/lessons",
+            "watchAssets": true
+          }
+        ],
+        "watchAssets": true
+      }
     }
   }
 }

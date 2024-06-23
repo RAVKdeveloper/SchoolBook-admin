@@ -10,16 +10,16 @@ import { TeacherEntity } from './teacher.entity'
 export class LessonEntity extends BasicEntity {
   @ApiProperty({ example: 'Информатика', description: 'Lesson name' })
   @Column({ name: 'lesson_name' })
-  lessonName: string
+  readonly lessonName: string
 
   @ApiProperty({ example: 'https://schoolbook.ru/lessonIcons/23423' })
   @Column({ nullable: true })
-  icon: string
+  readonly icon: string
 
   @ManyToOne(() => School, { onDelete: 'CASCADE' })
-  @ApiProperty({ default: School, enum: () => School })
+  @ApiProperty({ description: 'School', enum: () => School })
   @JoinColumn()
-  school: School
+  readonly school: School
 
   @ManyToMany(() => TeacherEntity, teacher => teacher.lessons, {
     onDelete: 'CASCADE',
@@ -27,9 +27,13 @@ export class LessonEntity extends BasicEntity {
   })
   @ApiProperty({ enum: () => TeacherEntity, description: 'Teacher', isArray: true })
   @JoinTable()
-  teacher: TeacherEntity[]
+  readonly teacher: TeacherEntity[]
 
   @ManyToOne(() => ClassEntity, classe => classe.lessons, { onDelete: 'CASCADE' })
   @ApiProperty({ enum: () => ClassEntity, description: 'Classes' })
-  classes: ClassEntity
+  readonly classes: ClassEntity
+
+  @ApiProperty({ description: 'Is required', example: true })
+  @Column({ default: true, name: 'is_required' })
+  readonly isRequired: boolean
 }

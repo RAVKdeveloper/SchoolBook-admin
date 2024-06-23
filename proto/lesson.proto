@@ -2,7 +2,60 @@ syntax = "proto3";
 
 package lesson;
 
+import "proto/entities.proto";
 
-message LessonDto {
-    
+
+service LessonsService {
+    rpc CreateLesson (CreateLessonDto) returns (ReturnOneLessonDto) {}
+    rpc GetAllLessons (GetAllLessonsDto) returns (ReturnAllLessonsDto) {} 
+    rpc GetLessonById (GetOneLessonByIdDto) returns (ReturnOneLessonDto) {}
+    rpc UpdateLesson (UpdateLessonDto) returns (ReturnOneLessonDto) {}
+    rpc DeleteLesson (DeleteLessonByIdDto) returns (ReturnOneLessonDto) {}
 }
+
+
+message CreateLessonDto {
+    int32 classId = 1;
+    repeated int32 teacherId = 2;
+    string name = 3;
+    int32 schoolId = 4;
+}
+
+message GetAllLessonsDto {
+    optional int32 classId = 1;
+    optional string page = 2;
+    optional string limit = 3;
+    optional string lessonName = 4;
+    optional string teacherId = 5;
+    string schoolId = 6;
+    optional bool isRequired = 7;
+    optional int32 onlyMy = 8;
+}
+
+message ReturnOneLessonDto {
+    string message = 1;
+    .entities.LessonEntityDto lesson = 2;
+}
+
+message ReturnAllLessonsDto {
+    int32 count = 1;
+    repeated .entities.LessonEntityDto data = 2;
+}
+
+message GetOneLessonByIdDto {
+    int32 lessonId = 1;
+    int32 schoolId = 2;
+}
+
+message UpdateLessonDto {
+    optional string name = 1;
+    optional int32 classId = 2;
+    repeated int32 teacherId = 3;
+    bool isAddTeachers = 4;
+    int32 lessonId = 5;
+}
+
+message DeleteLessonByIdDto {
+    int32 schoolId = 1;
+    int32 id = 2;
+} 

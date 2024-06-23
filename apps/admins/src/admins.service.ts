@@ -117,7 +117,6 @@ export class AdminsService {
     const checkOwner = await this.ownerRepo.findOne({
       where: {
         userId: { id: dto.userId },
-        role: dto.role,
         school: { id: dto.schoolId },
       },
     })
@@ -145,6 +144,7 @@ export class AdminsService {
     const payload = {
       userId: dto.userId,
       role: roleIdsObj.role as string,
+      schoolId: dto.schoolId,
       ...roleIdsObj,
     }
 

@@ -106,7 +106,8 @@ message LessonEntityDto {
     string icon = 2;
     SchoolEntityDto school = 3;
     repeated TeacherEntityDto teacher = 4;
-    repeated ClassEntityDto classes = 5;
+    ClassEntityDto classes = 5;
+    bool isRequired = 9;
 }
 
 message PointEntityDto {

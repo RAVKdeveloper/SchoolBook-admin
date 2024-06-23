@@ -15,6 +15,7 @@ export class OnlyOwnerGuard implements CanActivate {
     if (!token) {
       throw new ForbiddenException('Нет токена')
     }
+
     try {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: process.env.secretJWT,

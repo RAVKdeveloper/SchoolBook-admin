@@ -16,7 +16,7 @@ export class OwnerEntity extends BasicEntity {
   @JoinColumn({ name: 'user_id' })
   userId: UserEntity
 
-  @OneToOne(() => School, school => school.owner, { nullable: true })
+  @OneToOne(() => School, school => school.owner)
   @ApiProperty({ default: [], description: 'School id', enum: () => School })
   @JoinColumn({ name: 'school_id' })
   school: School

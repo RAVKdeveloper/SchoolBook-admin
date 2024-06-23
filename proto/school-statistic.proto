@@ -4,6 +4,7 @@ package schoolStatistic;
 
 service SchoolStatisticService {
     rpc GetAveragePoint (GetAveragePointDto) returns (ReturnGetAveragePoint) {}
+    rpc GetAllEmptyStudents (GetAllEmptyStudentsDto) returns (ReturnGetAllEmptyStudentsDto) {}
 }
 
 message GetAveragePointDto {
@@ -17,4 +18,16 @@ message ReturnGetAveragePoint {
     string averagePoint = 2;
     repeated int32 labels = 3;
     repeated int32 data = 4; 
+}
+
+message GetAllEmptyStudentsDto {
+    string period = 1;
+    int32 schoolId = 2;
+    optional int32 classId = 3;
+}
+
+message ReturnGetAllEmptyStudentsDto {
+    string period = 1;
+    repeated int32 labels = 2;
+    repeated int32 data = 3;
 }

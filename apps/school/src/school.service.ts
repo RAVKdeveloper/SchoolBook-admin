@@ -21,6 +21,13 @@ export class SchoolService {
 
     const newSchool = await this.schoolRepo.save({ ...dto, owner: owner })
 
+    await this.ownerRepo.update(
+      { id: owner.id },
+      {
+        school: { id: newSchool.id },
+      },
+    )
+
     return { message: 'Ok', schoolId: newSchool.id }
   }
 

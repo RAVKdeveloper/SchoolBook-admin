@@ -4,6 +4,7 @@ import { GrpcPermissionDeniedException } from 'nestjs-grpc-exceptions'
 import { And, Raw, Repository } from 'typeorm'
 
 import {
+  GetAllEmptyStudentsDto,
   GetAveragePointDto,
   PeriodFiltersBasic,
   PointEntity,
@@ -43,7 +44,21 @@ export class SchoolStatisticService {
     }
   }
 
-  public async getEmptyStudentDayStatistic() {}
+  public async getEmptyStudentStatistic(dto: GetAllEmptyStudentsDto) {
+    const period: Record<string, unknown> = this.getPeriodFiltering(dto.period)
+
+    if (dto.classId) {
+      period.class = { id: dto.classId }
+    }
+
+    const students = await this.studentRepo.find({
+      where: { school: { id: dto.schoolId }, ...period },
+      cache: true,
+      order: {
+        id: 'ASC',
+      },
+    })
+  }
 
   private getLabelsToPointSystemStatistic(points: PointEntity[], period: string) {
     const data = {}
@@ -100,6 +115,8 @@ export class SchoolStatisticService {
       return dataWithAveradgePoints
     }
   }
+
+  private getLabelsEmptyStudentsStatistic(students: StudentEntity[], period: string) {}
 
   private getPeriodFiltering(period: string) {
     if (period === PeriodFiltersBasic.WEEK) {

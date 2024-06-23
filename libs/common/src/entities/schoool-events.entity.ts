@@ -28,7 +28,7 @@ export class SchoolEventEntity extends BasicEntity {
   readonly creator: UserEntity
 
   @ApiProperty({ description: 'School', enum: () => School })
-  @ManyToOne(() => School, { cascade: true })
+  @ManyToOne(() => School, { onDelete: 'CASCADE' })
   readonly school: School
 
   @ApiProperty({ description: 'Active teachers', enum: () => TeacherEntity, isArray: true })
