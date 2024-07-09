@@ -2,11 +2,11 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'
 
 import { BasicEntity } from '../basic/basic.entity'
-import { StudentEntity } from './student.entity'
-// import { DaySchedule } from 'src/core/class-schedule/entities/day-schedule.entity'
 import { ClassEntity } from './class.entity'
 import { LessonEntity } from './lesson.entity'
+import { DayScheduleEntity } from './schedule/day-schedule.entity'
 import { School } from './school.entity'
+import { StudentEntity } from './student.entity'
 
 @Entity('point')
 export class PointEntity extends BasicEntity {
@@ -41,7 +41,7 @@ export class PointEntity extends BasicEntity {
   @Column()
   type: string
 
-  //   @ManyToOne(() => DaySchedule, day => day.points, { onDelete: 'CASCADE' })
-  //   @ApiProperty({ description: 'Day', enum: () => DaySchedule })
-  //   day: DaySchedule
+  @ManyToOne(() => DayScheduleEntity, day => day.points, { onDelete: 'CASCADE' })
+  @ApiProperty({ description: 'Day', enum: () => DayScheduleEntity })
+  day: DayScheduleEntity
 }

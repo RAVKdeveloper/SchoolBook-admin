@@ -20,14 +20,12 @@ export class TeachersController implements TeachersServiceController {
   getAllTeachers(
     dto: QueryTeachersDto,
   ): ReturnAllTeachersDto | Promise<ReturnAllTeachersDto> | Observable<ReturnAllTeachersDto> {
-    // @ts-expect-error
     return this.teachersService.getAllTeachers(dto)
   }
 
   getTeacherById(
     dto: GetTeacherByIdDto,
   ): ReturnOneTeacherDto | Promise<ReturnOneTeacherDto> | Observable<ReturnOneTeacherDto> {
-    // @ts-expect-error
     return this.teachersService.getTeacherById(dto)
   }
 }

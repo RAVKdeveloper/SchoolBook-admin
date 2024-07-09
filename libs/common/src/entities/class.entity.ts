@@ -2,9 +2,9 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm'
 
 import { BasicEntity } from '../basic/basic.entity'
+import { WeekScheduleEntity } from './schedule/week-schedule.entity'
 import { StudentEntity } from './student.entity'
 import { TeacherEntity } from './teacher.entity'
-// import { ClassSchedule } from 'src/core/class-schedule/entities/class-schedule.entity'
 // import { HomeWork } from 'src/core/home-work/entities/home-work.entity'
 import { LessonEntity } from './lesson.entity'
 import { PointEntity } from './point-system.entity'
@@ -54,10 +54,10 @@ export class ClassEntity extends BasicEntity {
   @ApiProperty({ description: 'Points', enum: () => PointEntity, isArray: true })
   points: PointEntity[]
 
-  //   @OneToMany(() => ClassSchedule, schedule => schedule.class)
-  //   @ApiProperty({ description: 'Schedule', enum: () => ClassSchedule })
-  //   @JoinColumn()
-  //   schedule: ClassSchedule[]
+  @OneToMany(() => WeekScheduleEntity, schedule => schedule.class)
+  @ApiProperty({ description: 'Schedule', enum: () => WeekScheduleEntity })
+  @JoinColumn()
+  schedule: WeekScheduleEntity[]
 
   //   @OneToMany(() => HomeWork, homeWork => homeWork.classe, { cascade: true })
   //   @ApiProperty({ description: 'Home works', enum: () => HomeWork, isArray: true })
