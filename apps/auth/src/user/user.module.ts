@@ -1,15 +1,12 @@
+import { join } from 'path'
+
 import { Module } from '@nestjs/common'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { join } from 'path'
 
-import {
-  AuthCodeEntity,
-  MAIL_SERVICE_NAME,
-  Packages,
-  TokensGenService,
-  UserEntity,
-} from '@app/common'
+import { AuthCodeEntity, UserEntity } from '@entities/src'
+
+import { MAIL_SERVICE_NAME, Packages, TokensGenService } from '@app/common'
 
 import { UserController } from './user.controller'
 import { UserService } from './user.service'

@@ -9,22 +9,22 @@
     "tsConfigPath": "apps/apigateway/tsconfig.app.json",
     "assets": [
       {
-        "include": "proto/admin.proto",
+        "include": "../schoolbook.shared/proto/admin.proto",
         "outDir": "dist/apps/apigateway/proto",
         "watchAssets": true
       },
       {
-        "include": "proto/invites.proto",
+        "include": "../schoolbook.shared/proto/invites.proto",
         "outDir": "dist/apps/apigateway",
         "watchAssets": true
       },
       {
-        "include": "proto/*.proto",
+        "include": "../schoolbook.shared/proto/*.proto",
         "outDir": "dist/apps/apigateway",
         "watchAssets": true
       },
       {
-        "include": "proto/entities.proto",
+        "include": "../schoolbook.shared/proto/entities.proto",
         "outDir": "dist/apps/apigateway/proto",
         "watchAssets": true
       }

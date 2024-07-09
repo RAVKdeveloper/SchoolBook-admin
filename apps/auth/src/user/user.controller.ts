@@ -13,7 +13,7 @@ import {
   User,
   VerifyDto,
   VerifyResponse,
-} from '@app/common'
+} from '@shared/index'
 
 import { UserService } from './user.service'
 

@@ -5,12 +5,12 @@ export class TypeOrmConfigClass {
   static getOrmConfig(config: ConfigService): TypeOrmModuleOptions {
     return {
       type: 'postgres',
-      // host: config.get('host'),
-      // port: config.get('dbport'),
-      // username: config.get('dblogin'),
-      // password: config.get('password'),
-      // database: config.get('dbname'),
-      // entities: [__dirname + '/**/*.entity{.js,.ts}'],
+      host: config.get('host'),
+      port: config.get('dbport'),
+      username: config.get('dblogin'),
+      password: config.get('password'),
+      database: config.get('dbname'),
+      entities: ['dist/src/*/*.entity{.ts,.js}'],
       synchronize: true,
       autoLoadEntities: true,
       url: process.env.URI,

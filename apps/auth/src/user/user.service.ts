@@ -14,9 +14,11 @@ import {
   MailServiceClient,
   TokensGenService,
   UpdatePassDto,
-  UserEntity,
+  // UserEntity,
   VerifyDto,
 } from '@app/common'
+
+import { UserEntity } from '@entities/src'
 
 @Injectable()
 export class UserService implements OnModuleInit {
