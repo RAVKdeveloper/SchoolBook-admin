@@ -10,6 +10,8 @@ export { PointNotificationEntity } from './notifications/point-notification.enti
 export { OwnerEntity } from './owner.entity'
 export { PointEntity } from './point-system.entity'
 export { QuestionsEntity } from './question.entity'
+export { DayScheduleEntity } from './schedule/day-schedule.entity'
+export { WeekScheduleEntity } from './schedule/week-schedule.entity'
 export { School } from './school.entity'
 export { SchoolEventEntity } from './schoool-events.entity'
 export { StudentEntity } from './student.entity'

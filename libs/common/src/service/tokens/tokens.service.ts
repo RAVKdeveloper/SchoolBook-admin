@@ -8,13 +8,13 @@ import { TokensGenerateDto } from './dto/token-gen.dto'
 export class TokensGenService {
   constructor(private service: JwtService) {}
 
-  async generateTokens(payload: TokensGenerateDto) {
+  public async generateTokens(payload: TokensGenerateDto) {
     const acces_token = await this.service.signAsync(payload)
 
     return acces_token
   }
 
-  async generateRoleTokens(payload: TokenGenRoleDto) {
+  public async generateRoleTokens(payload: TokenGenRoleDto) {
     const token = await this.service.signAsync(payload, {
       secret: process.env.secretJWT,
     })

@@ -63,7 +63,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": [
+          "proto/*.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -83,7 +85,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/mail/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": [
+          "proto/*.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -94,7 +98,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/admins/tsconfig.app.json",
-        "assets": ["proto/admin.proto"],
+        "assets": [
+          "proto/admin.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -126,7 +132,9 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/files/tsconfig.app.json",
-        "assets": ["proto/files.proto"],
+        "assets": [
+          "proto/files.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -304,6 +312,15 @@
           }
         ],
         "watchAssets": true
+      }
+    },
+    "schedule": {
+      "type": "application",
+      "root": "apps/schedule",
+      "entryFile": "main",
+      "sourceRoot": "apps/schedule/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/schedule/tsconfig.app.json"
       }
     }
   }

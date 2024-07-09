@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package schedule;
+
+import "proto/entities.proto";
+
+service ScheduleService {
+    rpc CreateWeekSchedule (CreateWeekScheduleDto) returns (ReturnOneWeekScheduleDto) {}
+    rpc CreateDaySchedule (CreateDayScheduleDto) returns (ReturnOneDayScheduleDto) {}
+}
+
+message CreateWeekScheduleDto {
+    int32 schoolId = 1;
+    int32 classId = 2;
+    repeated CreateDayScheduleDto days = 3;
+}
+
+message CreateDayScheduleDto {
+    repeated int32 activeTeachersId = 1;
+    repeated int32 lessonsId = 2;
+    string dayName = 3;
+    string date = 4;
+}
+
+message UpdateDayScheduleDto {
+    repeated int32 activeTeachersId = 1;
+    repeated int32 lessonId = 2;
+    optional string dayName = 3;
+    optional string date = 4;
+}
+
+message CreateOneDaySchedule {
+    repeated int32 activeTeachersId = 1;
+    repeated int32 lessonsId = 2;
+    string dayName = 3;
+    string date = 4;
+    int32 weekScheduleId = 5;
+}
+
+message GetWeekScheduleDto {
+    optional string page = 1;
+    string classId = 2;
+    string schoolId = 3;
+}
+
+message GetDayScheduleDto {
+    optional string page = 1;
+    optional string date = 4;
+    string classId = 2;
+    string schoolId = 3;
+}
+
+message SoftDeleteScheduleDto {
+    int32 schoolId = 1;
+    int32 scheduleId = 2;
+    string typeSchedule = 3;
+}
+
+message HardDeleteScheduleDto {
+    int32 schoolId = 1;
+    int32 scheduleId = 2;
+    string typeSchedule = 3;
+}
+
+message RecoverScheduleDto {
+    int32 schoolId = 1;
+    int32 scheduleId = 2;
+    string typeSchedule = 3;
+}
+
+message ReturnOkScheduleDeleteResponse {
+    string message = 1;
+}
+
+message ReturnOneWeekScheduleDto {
+    string message = 1;
+    .entities.WeekScheduleEntityDto schedule = 2;
+}
+
+message ReturnOneDayScheduleDto {
+    string message = 1;
+    .entities.DayScheduleEntityDto daySchedule = 2;
+}

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import {
   ClassEntity,
   DatabaseModule,
+  DayScheduleEntity,
   LessonEntity,
   LikeEntity,
   ModeratorEntity,
@@ -15,6 +16,7 @@ import {
   TeacherEntity,
   TopQuestionCommentEntity,
   UserEntity,
+  WeekScheduleEntity,
 } from '@app/common'
 
 import { ClassController } from './class.controller'
@@ -36,6 +38,8 @@ import { ClassService } from './class.service'
       QuestionsEntity,
       LikeEntity,
       TopQuestionCommentEntity,
+      WeekScheduleEntity,
+      DayScheduleEntity,
     ]),
   ],
   controllers: [ClassController],

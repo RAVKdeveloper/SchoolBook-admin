@@ -14,12 +14,12 @@ import { ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { GrpcToHttpInterceptor } from 'nestjs-grpc-exceptions'
 
+import { CustomHeaders } from '@app/common'
+
 import { AuthGuard } from '../guards/auth.guard'
 import { OnlyOwnerGuard } from '../guards/only-owner.guard'
 
 import { AdminsService } from './admins.service'
-
-import { CustomHeaders } from '@app/common'
 
 import { RefreshRoleTokenDto } from './dto/refresh-role-token.dto'
 
