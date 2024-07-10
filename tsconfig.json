@@ -21,7 +21,8 @@
       "@app/common": ["libs/common/src"],
       "@app/common/*": ["libs/common/src/*"],
       "@shared/*": ["../schoolbook.shared/*"],
-      "@entities/*": ["../schoolbook.entities/*"]
+      "@entities/*": ["../schoolbook.entities/*"],
+      "@shared": ["../schoolbook.shared"]
     }
   }
 }

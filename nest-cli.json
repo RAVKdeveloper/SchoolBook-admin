@@ -63,9 +63,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json",
-        "assets": [
-          "proto/*.proto"
-        ],
+        "assets": ["../schoolbook.shared/proto/*.proto"],
         "watchAssets": true
       }
     },
@@ -85,9 +83,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/mail/tsconfig.app.json",
-        "assets": [
-          "proto/*.proto"
-        ],
+        "assets": ["../schoolbook.shared/*.proto"],
         "watchAssets": true
       }
     },
@@ -98,9 +94,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/admins/tsconfig.app.json",
-        "assets": [
-          "proto/admin.proto"
-        ],
+        "assets": ["../schoolbook.shared/proto/admin.proto"],
         "watchAssets": true
       }
     },
@@ -113,7 +107,7 @@
         "tsConfigPath": "apps/invites/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/admin.proto",
+            "include": "../schoolbook.shared/proto/admin.proto",
             "outDir": "dist/apps/invites/proto",
             "watchAssets": true
           },
@@ -132,9 +126,7 @@
       "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/files/tsconfig.app.json",
-        "assets": [
-          "proto/files.proto"
-        ],
+        "assets": ["../schoolbook.shared/proto/files.proto"],
         "watchAssets": true
       }
     },
@@ -147,12 +139,12 @@
         "tsConfigPath": "apps/school/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/school/proto",
             "watchAssets": true
           },
           {
-            "include": "proto/school.proto",
+            "include": "../schoolbook.shared/proto/school.proto",
             "outDir": "dist/apps/school",
             "watchAssets": true
           }
@@ -169,12 +161,12 @@
         "tsConfigPath": "apps/teachers/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/teachers/proto",
             "watchAssets": true
           },
           {
-            "include": "proto/teachers.proto",
+            "include": "../schoolbook.shared/proto/teachers.proto",
             "outDir": "dist/apps/teachers",
             "watchAssets": true
           }
@@ -191,7 +183,7 @@
         "tsConfigPath": "apps/school-statistic/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/school-statistic/proto",
             "watchAssets": true
           },
@@ -213,12 +205,12 @@
         "tsConfigPath": "apps/school-events/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/school-events/proto",
             "watchAssets": true
           },
           {
-            "include": "proto/school-events.proto",
+            "include": "../schoolbook.shared/proto/school-events.proto",
             "outDir": "dist/apps/school-events",
             "watchAssets": true
           }
@@ -235,7 +227,7 @@
         "tsConfigPath": "apps/notifications/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/notifications/proto",
             "watchAssets": true
           },
@@ -257,12 +249,12 @@
         "tsConfigPath": "apps/top-questions/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/top-questions/proto",
             "watchAssets": true
           },
           {
-            "include": "proto/topQuestions.proto",
+            "include": "../schoolbook.shared/proto/topQuestions.proto",
             "outDir": "dist/apps/top-questions",
             "watchAssets": true
           }
@@ -279,12 +271,12 @@
         "tsConfigPath": "apps/class/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/class/proto",
             "watchAssets": true
           },
           {
-            "include": "proto/class.proto",
+            "include": "../schoolbook.shared/proto/class.proto",
             "outDir": "dist/apps/class",
             "watchAssets": true
           }
@@ -301,12 +293,12 @@
         "tsConfigPath": "apps/lessons/tsconfig.app.json",
         "assets": [
           {
-            "include": "proto/entities.proto",
+            "include": "../schoolbook.shared/proto/entities.proto",
             "outDir": "dist/apps/lessons/proto",
             "watchAssets": true
           },
           {
-            "include": "proto/lesson.proto",
+            "include": "../schoolbook.shared/proto/lesson.proto",
             "outDir": "dist/apps/lessons",
             "watchAssets": true
           }
@@ -317,10 +309,22 @@
     "schedule": {
       "type": "application",
       "root": "apps/schedule",
-      "entryFile": "main",
-      "sourceRoot": "apps/schedule/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/schedule/tsconfig.app.json"
+        "tsConfigPath": "apps/schedule/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "../schoolbook.shared/proto/entities.proto",
+            "outDir": "dist/apps/schedule/proto",
+            "watchAssets": true
+          },
+          {
+            "include": "../schoolbook.shared/proto/schedule.proto",
+            "outDir": "dist/apps/schedule",
+            "watchAssets": true
+          }
+        ]
       }
     }
   }

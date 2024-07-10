@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
+import { DatabaseModule, TokensModule } from '@app/common'
+
 import {
   ClassEntity,
-  DatabaseModule,
   DayScheduleEntity,
   LessonEntity,
   ModeratorEntity,
@@ -12,10 +13,9 @@ import {
   School,
   StudentEntity,
   TeacherEntity,
-  TokensModule,
   UserEntity,
   WeekScheduleEntity,
-} from '@app/common'
+} from '@entities/src'
 
 import { AdminsController } from './admins.controller'
 import { AdminsService } from './admins.service'
