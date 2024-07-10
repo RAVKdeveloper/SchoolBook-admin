@@ -1,52 +1,61 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { ClientGrpc } from '@nestjs/microservices';
-import type { Response } from 'express';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common'
+import { ClientGrpc } from '@nestjs/microservices'
+import type { Response } from 'express'
 
-import { AUTH_SERVICE_NAME, AuthServiceClient } from '@app/common';
+import { AUTH_SERVICE_NAME, AuthServiceClient } from '@app/common'
 
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { LoginAuthDto } from './dto/login-user.dto';
-import { VerifyUserDto } from './dto/verify-user.dto';
+import { CreateAuthDto } from './dto/create-auth.dto'
+import { ForgotPasswordDto } from './dto/forgot-password.dto'
+import { LoginAuthDto } from './dto/login-user.dto'
+import { UpdatePasswordDto } from './dto/update-password.dto'
+import { VerifyUserDto } from './dto/verify-user.dto'
 
 @Injectable()
 export class AuthService implements OnModuleInit {
-  private authService: AuthServiceClient;
+  private authService: AuthServiceClient
 
   constructor(@Inject(AUTH_SERVICE_NAME) private client: ClientGrpc) {}
 
   onModuleInit() {
-    this.authService =
-      this.client.getService<AuthServiceClient>(AUTH_SERVICE_NAME);
+    this.authService = this.client.getService<AuthServiceClient>(AUTH_SERVICE_NAME)
   }
 
   registration(dto: CreateAuthDto) {
-    return this.authService.registration(dto);
+    return this.authService.registration(dto)
   }
 
   async login(dto: LoginAuthDto) {
-    const user = await this.authService.loginUser(dto).toPromise();
+    const user = await this.authService.loginUser(dto).toPromise()
 
-    return user;
+    return user
   }
 
   me(userId: number) {
-    return this.authService.me({ userId });
+    return this.authService.me({ userId })
   }
 
   async verifyUser(dto: VerifyUserDto, res: Response) {
-    const { token } = await this.authService.verify(dto).toPromise();
+    const { token } = await this.authService.verify(dto).toPromise()
 
     res.cookie('access_token_auth', token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    })
 
-    res.send({ message: 'Ok' });
+    res.send({ message: 'Ok' })
   }
 
   async logOut(res: Response) {
-    res.clearCookie('access_token_auth', { httpOnly: true });
+    res.clearCookie('access_token_auth', { httpOnly: true })
 
-    res.send({ message: 'Ok' });
+    res.send({ message: 'Ok' })
+  }
+
+  async forgotPass(dto: ForgotPasswordDto) {
+    return this.authService.forgotPass(dto)
+  }
+
+  async updatePassword(dto: UpdatePasswordDto) {
+    return this.authService.updatePass(dto)
   }
 }

@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Patch,
   Post,
   Put,
   Req,
@@ -13,13 +14,16 @@ import { ApiCookieAuth, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nest
 import { Request, Response } from 'express'
 import { GrpcToHttpInterceptor } from 'nestjs-grpc-exceptions'
 
-import { CustomHeaders, UserEntity } from '@app/common'
+import { CustomHeaders } from '@app/common'
+import { UserEntity } from '@entities/src'
 import { AuthGuard } from '../guards/auth.guard'
 
 import { AuthService } from './auth.service'
 
 import { CreateAuthDto } from './dto/create-auth.dto'
+import { ForgotPasswordDto } from './dto/forgot-password.dto'
 import { LoginAuthDto } from './dto/login-user.dto'
+import { UpdatePasswordDto } from './dto/update-password.dto'
 import { VerifyUserDto } from './dto/verify-user.dto'
 
 @ApiTags('Auth')
@@ -82,5 +86,26 @@ export class AuthController {
   @Put('/logout')
   logout(@Res({ passthrough: true }) res: Response) {
     return this.authService.logOut(res)
+  }
+
+  @ApiOkResponse({ description: 'Forgot password', type: UserEntity })
+  @UseGuards(AuthGuard)
+  @Patch('/forgot-pass')
+  forgotPassword(@Body() dto: ForgotPasswordDto) {
+    return this.authService.forgotPass(dto)
+  }
+
+  @ApiOkResponse({
+    description: 'Successful update user password',
+    schema: {
+      type: 'object',
+      example: {
+        message: 'Ok',
+      },
+    },
+  })
+  @Patch('/update-pass')
+  updatePassword(@Body() dto: UpdatePasswordDto) {
+    return this.authService.updatePassword(dto)
   }
 }
